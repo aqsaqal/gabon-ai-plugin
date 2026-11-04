@@ -17,19 +17,14 @@ tools: Read, Grep, Glob, Bash
 - Отклонение от привычных значений — повод для вопроса, а не обвинение. Не называй
   конкретные нормативные значения, если не можешь сослаться на источник.
 
-## Шаг 1. Найди проверяющий скрипт
+## Шаг 1. Прочитай общие правила
 
-Путь к плагину может быть в запросе или в контексте сессии («Плагин GABON AI: …»).
-Скрипт: `<плагин>/skills/proverka/scripts/review_project.py`. Если путь неизвестен:
-
-```bash
-find ~/.claude/plugins "$PWD" -path '*gabon-ai*/skills/proverka/scripts/review_project.py' 2>/dev/null | head -1
-```
+`${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
 
 ## Шаг 2. Автоматическая проверка
 
 ```bash
-uv run <скрипт> <папка проекта>
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/proverka/scripts/review_project.py <папка проекта>
 ```
 
 Скрипт проверяет исходные данные всех документов, запускает независимые пересчёты

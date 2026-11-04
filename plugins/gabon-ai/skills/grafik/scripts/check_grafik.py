@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["openpyxl>=3.1", "pypdf>=4.0", "reportlab>=4.0"]
+# dependencies = ["openpyxl==3.1.5", "pypdf==6.21.4", "reportlab==5.1.0"]
 # ///
 """Независимая проверка графика: формулы Excel (WORKDAY.INTL, ROUNDUP, MAX) пересчитываются
 и сверяются с расчётом, PDF сверяется по датам каждой работы.

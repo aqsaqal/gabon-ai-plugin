@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["openpyxl>=3.1"]
+# dependencies = ["openpyxl==3.1.5"]
 # ///
 """Заполненный шаблон KP_template.xlsx -> kp.json (для build_kp.py).
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pypdf>=4.0", "openpyxl>=3.1", "python-docx>=1.1"]
+# dependencies = ["pypdf==6.21.4", "openpyxl==3.1.5", "python-docx==1.2.0"]
 # ///
 """Текст из документов заказчика для составления ВОР.
 

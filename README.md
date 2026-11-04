@@ -27,7 +27,6 @@ Claude соберёт `kp.json`, создаст PDF, Excel и Word в `output/` 
 .claude-plugin/marketplace.json   каталог плагинов (для установки)
 plugins/gabon-ai/
   .claude-plugin/plugin.json      описание плагина
-  hooks/hooks.json                загрузка общих правил в начале сессии
   rules/RULES.md                  общие правила (ничего не выдумывать, НДС, проверки)
   skills/kp/                      навык «Коммерческое предложение»
     SKILL.md                      инструкция для Claude
@@ -37,7 +36,6 @@ plugins/gabon-ai/
     scripts/make_template.py      пустой Excel-шаблон КП для ручного заполнения
     scripts/xlsx_to_kp.py         заполненный шаблон -> kp.json -> PDF
     references/input-format.md    формат kp.json
-    assets/KP_template.xlsx       универсальный шаблон КП (Excel, формулы, печать A4)
     assets/                       примеры kp.json и company.json
   skills/prices/                  навык «Прайс-лист»: шаблон, проверка, поиск, подстановка в КП
   skills/brand/                   навык «Фирменный шаблон»: цвета, логотип, бланк, тексты

@@ -5,6 +5,8 @@ description: Подготовка коммерческого предложен�
 
 # КП: коммерческое предложение (PDF + Excel + Word)
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 Арифметику, формулы и оформление делают скрипты из папки `scripts/` рядом с этим файлом.
 Твоя работа: собрать корректные исходные данные, запустить сборку, запустить проверку
 и честно отчитаться. Сам суммы не считай и в документы не вписывай.
@@ -53,13 +55,13 @@ projects/<объект>/
 
 ## Вариант: пользователь работает в Excel-шаблоне
 
-Пустой шаблон: `assets/KP_template.xlsx` (или создать новый:
-`uv run scripts/make_template.py путь/KP_template.xlsx`). Скопируй его в `input/` проекта,
-исходник в `assets/` не меняй. Пользователь заполняет жёлтые ячейки, все суммы считают
+Создай пустой шаблон в папке проекта:
+`uv run ${CLAUDE_PLUGIN_ROOT}/skills/kp/scripts/make_template.py projects/<объект>/input/KP_template.xlsx`.
+Пользователь заполняет жёлтые ячейки, все суммы считают
 формулы Excel. Из заполненного шаблона фирменный PDF собирается так:
 
 ```bash
-uv run <папка навыка>/scripts/xlsx_to_kp.py projects/<объект>/input/<шаблон>.xlsx
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/kp/scripts/xlsx_to_kp.py projects/<объект>/input/<шаблон>.xlsx
 ```
 
 Получится `kp.json` рядом с файлом. Дальше шаги 3–4 как обычно.
@@ -80,19 +82,19 @@ uv run <папка навыка>/scripts/xlsx_to_kp.py projects/<объект>/i
 ## Шаг 3. Собери КП
 
 ```bash
-uv run <папка навыка>/scripts/build_kp.py projects/<объект>/input/kp.json
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/kp/scripts/build_kp.py projects/<объект>/input/kp.json
 ```
 
 Файлы появятся в `projects/<объект>/output/`: Excel с формулами, PDF для отправки и Word
 для правки текста (то же содержание и те же суммы). Фирменный бланк PDF в Word не переносится:
 в Word шапка собирается из логотипа и реквизитов. Если Word не нужен: `--no-docx`. Если скрипт сообщает об ошибках
 в исходных данных, исправь `kp.json` (или спроси пользователя) и запусти снова.
-Если `uv` не установлен: `pip install openpyxl reportlab pypdf pillow python-docx` и запуск через `python3`.
+Если `uv` не установлен, попроси пользователя установить его: https://docs.astral.sh/uv/
 
 ## Шаг 4. Проверь
 
 ```bash
-uv run <папка навыка>/scripts/check_kp.py <kp.json> <KP_....xlsx> <KP_....pdf> <KP_....docx>
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/kp/scripts/check_kp.py <kp.json> <KP_....xlsx> <KP_....pdf> <KP_....docx>
 ```
 
 Проверка независимо пересчитывает все формулы Excel и сверяет их с исходными данными,

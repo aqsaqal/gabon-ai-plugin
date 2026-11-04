@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["openpyxl>=3.1", "pypdf>=4.0", "reportlab>=4.0", "python-docx>=1.1"]
+# dependencies = ["openpyxl==3.1.5", "pypdf==6.21.4", "reportlab==5.1.0", "python-docx==1.2.0"]
 # ///
 """Независимая проверка акта: формулы Excel (акт, накопительная, справка), PDF и Word.
 

@@ -5,6 +5,8 @@ description: Прайс-лист (база цен) строительной ко
 
 # Прайс-лист компании
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 Прайс-лист — единственный источник цен для КП и смет, если у позиции нет другого
 подтверждённого источника. Скрипты лежат в `scripts/` рядом с этим файлом.
 
@@ -21,9 +23,9 @@ description: Прайс-лист (база цен) строительной ко
 ## Команды
 
 ```bash
-uv run <папка навыка>/scripts/prices.py template data/prices.xlsx   # пустой прайс
-uv run <папка навыка>/scripts/prices.py check data/prices.xlsx      # проверка
-uv run <папка навыка>/scripts/prices.py find data/prices.xlsx бетон В25
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/prices/scripts/prices.py template data/prices.xlsx   # пустой прайс
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/prices/scripts/prices.py check data/prices.xlsx      # проверка
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/prices/scripts/prices.py find data/prices.xlsx бетон В25
 ```
 
 `template` не перезаписывает существующий файл.

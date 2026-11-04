@@ -5,6 +5,8 @@ description: Локальный сметный расчёт (коммерчес�
 
 # Смета: локальный расчёт и проверка смет подрядчиков
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 Скрипты в `scripts/` рядом с этим файлом. Арифметику делают они.
 
 ## Важно про нормативные сметы
@@ -36,8 +38,8 @@ description: Локальный сметный расчёт (коммерчес�
 5. Собери и проверь:
 
 ```bash
-uv run <папка навыка>/scripts/build_smeta.py projects/<объект>/input/smeta.json
-uv run <папка навыка>/scripts/check_smeta.py <smeta.json> <SMETA_....xlsx> <SMETA_....pdf>
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/smeta/scripts/build_smeta.py projects/<объект>/input/smeta.json
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/smeta/scripts/check_smeta.py <smeta.json> <SMETA_....xlsx> <SMETA_....pdf>
 ```
 
 Excel: лист «Смета» (позиции и их ресурсы с формулами), «Ресурсы» (ресурсная ведомость
@@ -50,7 +52,7 @@ PDF: позиции с разбивкой на ФОТ, машины, матер�
 2. Excel подрядчика импортируй:
 
 ```bash
-uv run <папка навыка>/scripts/import_estimate.py <файл подрядчика.xlsx> --out projects/<объект>/input/contractor.json --contractor "ТОО …"
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/smeta/scripts/import_estimate.py <файл подрядчика.xlsx> --out projects/<объект>/input/contractor.json --contractor "ТОО …"
 ```
 
    Если колонки не найдены, посмотри файл и укажи их: `--map name=B,unit=C,qty=D,price=E,amount=F`.
@@ -60,7 +62,7 @@ uv run <папка навыка>/scripts/import_estimate.py <файл подря
 3. Сравни с нашей сметой или КП:
 
 ```bash
-uv run <папка навыка>/scripts/compare.py --ours <smeta.json или kp.json> --contractor <contractor.json> --out projects/<объект>/output
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/smeta/scripts/compare.py --ours <smeta.json или kp.json> --contractor <contractor.json> --out projects/<объект>/output
 ```
 
    Сопоставление идёт по полю `match` в contractor.json (номер нашей позиции, например «2.3»),

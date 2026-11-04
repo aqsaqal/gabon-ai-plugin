@@ -5,6 +5,8 @@ description: Фирменный шаблон (фирменный стиль, б�
 
 # Фирменный шаблон компании
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 Оформление документов задаётся одним файлом `data/brand.json` в рабочей папке пользователя,
 рядом с `company.json`. Логотип, шрифты и бланк лежат там же. В плагин их не кладут.
 Скрипты в `scripts/` рядом с этим файлом.
@@ -12,9 +14,9 @@ description: Фирменный шаблон (фирменный стиль, б�
 ## Команды
 
 ```bash
-uv run <папка навыка>/scripts/brand.py init data/brand.json      # заготовка (не перезаписывает)
-uv run <папка навыка>/scripts/brand.py check data/brand.json     # проверка
-uv run <папка навыка>/scripts/brand.py preview data/brand.json --company data/company.json --out data/preview
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/brand/scripts/brand.py init data/brand.json      # заготовка (не перезаписывает)
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/brand/scripts/brand.py check data/brand.json     # проверка
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/brand/scripts/brand.py preview data/brand.json --company data/company.json --out data/preview
 ```
 
 `preview` собирает образец КП с условными данными и водяным знаком «ОБРАЗЕЦ», чтобы

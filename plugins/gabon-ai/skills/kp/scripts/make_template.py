@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["openpyxl>=3.1", "pillow>=10", "reportlab>=4.0", "pypdf>=4.0"]
+# dependencies = ["openpyxl==3.1.5", "pillow==13.0.0", "reportlab==5.1.0", "pypdf==6.21.4"]
 # ///
 """Универсальный шаблон КП в Excel для ручного заполнения.
 

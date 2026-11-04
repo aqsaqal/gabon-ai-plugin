@@ -5,6 +5,8 @@ description: Ведомость объёмов работ (ВОР, bill of quant
 
 # ВОР: ведомость объёмов работ
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 ВОР — список работ с единицами и количествами, без цен. Каждое количество должно быть
 проверяемым: формула из размеров, ссылка на документ и статус. Скрипты в `scripts/`
 рядом с этим файлом.
@@ -12,7 +14,7 @@ description: Ведомость объёмов работ (ВОР, bill of quant
 ## Шаг 1. Прочитай документы заказчика
 
 ```bash
-uv run <папка навыка>/scripts/extract_docs.py projects/<объект>/input/ --out projects/<объект>/input/_text
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/vor/scripts/extract_docs.py projects/<объект>/input/ --out projects/<объект>/input/_text
 ```
 
 Скрипт создаёт текстовые копии PDF, DOCX и XLSX с метками страниц, листов и таблиц.
@@ -48,8 +50,8 @@ uv run <папка навыка>/scripts/extract_docs.py projects/<объект>
 ## Шаг 3. Собери и проверь
 
 ```bash
-uv run <папка навыка>/scripts/build_vor.py projects/<объект>/input/vor.json
-uv run <папка навыка>/scripts/check_vor.py <vor.json> <VOR_....xlsx> <VOR_....pdf>
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/vor/scripts/build_vor.py projects/<объект>/input/vor.json
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/vor/scripts/check_vor.py <vor.json> <VOR_....xlsx> <VOR_....pdf>
 ```
 
 Получатся Excel (количества считаются формулами, допущения жёлтые, строки без данных
@@ -65,7 +67,7 @@ uv run <папка навыка>/scripts/check_vor.py <vor.json> <VOR_....xlsx> 
 ## Шаг 5. Переход к КП (если нужно)
 
 ```bash
-uv run <папка навыка>/scripts/vor_to_kp.py <vor.json> --out <kp.json> --number <номер КП> \
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/vor/scripts/vor_to_kp.py <vor.json> --out <kp.json> --number <номер КП> \
     --price-list data/prices.xlsx [--brand data/brand.json]
 ```
 

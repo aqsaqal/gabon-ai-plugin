@@ -5,6 +5,8 @@ description: Акты выполненных работ по форме Р-1 (К
 
 # Акты выполненных работ
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 Скрипты в `scripts/` рядом с этим файлом.
 
 ## Главные правила
@@ -24,7 +26,7 @@ description: Акты выполненных работ по форме Р-1 (К
 ## Шаг 1. Договор (один раз)
 
 ```bash
-uv run <папка навыка>/scripts/make_contract.py projects/<объект>/input/kp.json \
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/akty/scripts/make_contract.py projects/<объект>/input/kp.json \
     --out projects/<объект>/input/contract.json --number <№ договора> --date ГГГГ-ММ-ДД
 ```
 
@@ -41,8 +43,8 @@ contract.json реквизиты заказчика (БИН, адрес, тел�
 В `previous` перечисли **все** предыдущие акты по договору.
 
 ```bash
-uv run <папка навыка>/scripts/build_act.py projects/<объект>/input/act_<N>.json
-uv run <папка навыка>/scripts/check_act.py <act.json> <AKT_....xlsx> <AKT_....pdf> <AKT_....docx>
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/akty/scripts/build_act.py projects/<объект>/input/act_<N>.json
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/akty/scripts/check_act.py <act.json> <AKT_....xlsx> <AKT_....pdf> <AKT_....docx>
 ```
 
 Результат:

@@ -5,6 +5,8 @@ description: Календарный график производства раб
 
 # График производства работ
 
+Сначала прочитай общие правила GABON AI: `${CLAUDE_PLUGIN_ROOT}/rules/RULES.md`.
+
 Скрипты в `scripts/` рядом с этим файлом. Даты считают они, а не модель.
 
 ## Откуда длительности
@@ -42,8 +44,8 @@ description: Календарный график производства раб
 ## Сборка и проверка
 
 ```bash
-uv run <папка навыка>/scripts/build_grafik.py projects/<объект>/input/grafik.json
-uv run <папка навыка>/scripts/check_grafik.py <grafik.json> <GRAFIK_....xlsx> <GRAFIK_....pdf>
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/grafik/scripts/build_grafik.py projects/<объект>/input/grafik.json
+uv run ${CLAUDE_PLUGIN_ROOT}/skills/grafik/scripts/check_grafik.py <grafik.json> <GRAFIK_....xlsx> <GRAFIK_....pdf>
 ```
 
 Excel: даты считаются формулами WORKDAY.INTL с учётом выходных и праздников. Если в Excel
