@@ -19,7 +19,7 @@
 | `rates.overhead_source`, `rates.profit_source` | нет | Откуда взяты ставки |
 | `sections[]` | да | Разделы: `title` и `items[]` |
 | `terms` | нет | Объект `duration`, `payment`, `warranty`, `start` или список строк |
-| `assumptions[]`, `exclusions[]`, `missing_data[]` | нет | Списки строк |
+| `assumptions[]`, `exclusions[]`, `missing_data[]` | нет | Списки строк. Печатаются в PDF, Word и Excel как «Допущения», «Не включено в стоимость», «Требуется уточнить» |
 | `sample` | нет | `true` — водяной знак «ОБРАЗЕЦ» |
 | `brand` | нет | Путь к фирменному шаблону `brand.json` (навык brand): цвета, логотип, бланк, тексты по умолчанию |
 | `price_list` | нет | Путь к прайс-листу компании (относительно kp.json), например `../data/prices.xlsx` |

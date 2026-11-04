@@ -109,3 +109,15 @@ def test_check_detects_edited_word(tmp_path):
     doc.save(str(path))
     r = _check(p, b)
     assert r.returncode == 1 and "В Word не найдены" in r.stdout
+
+
+def test_missing_data_printed_in_pdf_and_word(tmp_path):
+    d = copy.deepcopy(BASE)
+    d["missing_data"] = ["Проект КЖ для подтверждения объёмов"]
+    p, b = _build(tmp_path, d)
+    from pypdf import PdfReader
+    pdf_text = " ".join(pg.extract_text() for pg in PdfReader(str(b.with_suffix(".pdf"))).pages)
+    assert "Требуется уточнить" in pdf_text and "Проект КЖ" in pdf_text
+    t = _text(b.with_suffix(".docx"))
+    assert "Требуется уточнить" in t and "Проект КЖ" in t
+    assert _check(p, b).returncode == 0

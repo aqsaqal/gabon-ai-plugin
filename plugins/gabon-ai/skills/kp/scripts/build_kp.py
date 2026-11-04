@@ -485,6 +485,7 @@ def build_docx(data: dict, calc: dict, path: Path) -> None:
     block("Условия", terms_lines(data))
     block("Допущения", data.get("assumptions"))
     block("Не включено в стоимость", data.get("exclusions"))
+    block("Требуется уточнить", data.get("missing_data"))
     if rates.get("vat_source"):
         para(f"НДС не начисляется. Основание: {rates['vat_source']}." if no_vat else
              f"Ставка НДС: {fmt_pct(rates['vat_pct'])}. Основание: {rates['vat_source']}.", size=8)
@@ -681,6 +682,7 @@ def build_pdf(data: dict, calc: dict, path: Path) -> None:
     bullet_block("Условия", terms_lines(data))
     bullet_block("Допущения", data.get("assumptions"))
     bullet_block("Не включено в стоимость", data.get("exclusions"))
+    bullet_block("Требуется уточнить", data.get("missing_data"))
     if rates.get("vat_source"):
         story += [Spacer(1, 2 * mm), Paragraph(
             (f"НДС не начисляется. Основание: {esc(rates['vat_source'])}." if no_vat else
