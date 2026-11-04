@@ -1,0 +1,30 @@
+{
+  "name": "Фирменный стиль компании",
+  "colors": {
+    "primary": "#1F3864",
+    "header_text": "#FFFFFF",
+    "section": "#D9E1F2",
+    "subtotal": "#F2F2F2",
+    "total": "#FFF2CC"
+  },
+  "logo": "logo.png",
+  "logo_position": "left",
+  "logo_width_mm": 35,
+  "show_requisites": true,
+  "letterhead_pdf": "",
+  "letterhead_pages": "first",
+  "margins_mm": { "top": 15, "bottom": 18, "left": 15, "right": 15 },
+  "title": "КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ",
+  "footer_text": "",
+  "defaults": {
+    "valid_days": 14,
+    "numbering": "continuous",
+    "amount_decimals": 0,
+    "intro": "Предлагаем выполнить следующий перечень работ:",
+    "terms": [
+      "Объёмы работ уточняются по факту выполнения на основании исполнительной документации.",
+      "Сроки выполнения работ — по согласованию сторон, после подписания договора.",
+      "Оплата — согласно графику платежей, определяемому договором подряда."
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "number": "ТЕСТ-ОКР-1",
+  "date": "2026-11-04",
+  "company": { "name": "ТОО «Условная компания»" },
+  "client": { "name": "ТОО «Условный заказчик»" },
+  "object": { "name": "Условный объект для проверки округления" },
+  "numbering": "continuous",
+  "rates": { "overhead_pct": 0, "profit_pct": 0, "vat_pct": 16, "vat_source": "тест", "amount_decimals": 0 },
+  "sections": [ { "title": "Работы", "items": [
+    { "name": "Позиция с половиной тенге вверх", "unit": "м2", "qty": 12.5, "price": 3, "kind": "комплекс", "source": "тест" },
+    { "name": "Ещё одна половина", "unit": "м2", "qty": 100.25, "price": 2, "kind": "комплекс", "source": "тест" },
+    { "name": "Крупная позиция", "unit": "м2", "qty": 1000, "price": 1000, "kind": "комплекс", "source": "тест" }
+  ] } ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "gabon-ai",
+  "owner": { "name": "GABON AI" },
+  "metadata": { "description": "ИИ-инструменты для ПТО и сметного отдела строительной компании (Казахстан)" },
+  "plugins": [
+    {
+      "name": "gabon-ai",
+      "source": "./plugins/gabon-ai",
+      "description": "Коммерческие предложения, сметы и документация ПТО по нормам РК"
+    }
+  ]
+}

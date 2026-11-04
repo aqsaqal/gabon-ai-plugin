@@ -1,0 +1,10 @@
+{
+  "name": "Тестовый стиль ТОО «Пример Строй»",
+  "colors": { "primary": "#0B5D3B", "section": "#DCEFE4", "subtotal": "#F1F5F2", "total": "#FCE9C0" },
+  "logo": "logo.png",
+  "logo_width_mm": 45,
+  "footer_text": "ТОО «Пример Строй» · тестовые данные",
+  "defaults": {
+    "terms": { "duration": "по согласованию сторон", "payment": "аванс 30 %, остаток по актам", "warranty": "24 месяца" }
+  }
+}

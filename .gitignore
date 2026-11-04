@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# macOS
+.DS_Store
+
+# Claude Code local state
+.claude/
+
+# Generated documents: rebuilt from input/*.json by the plugin scripts
+projects/*/output/
+projects/*/input/_text/
+
+# Private material that must never be uploaded (client and third-party documents)
+private/

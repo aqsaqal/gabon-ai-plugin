@@ -1,0 +1,11 @@
+{
+  "name": "ТОО «Название компании»",
+  "bin": "000000000000",
+  "address": "г. Город, ул. Улица, д. 0",
+  "phone": "+7 (000) 000-00-00",
+  "email": "info@example.kz",
+  "bank": { "name": "АО «Банк»", "iik": "KZ00000000000000000", "bik": "XXXXKZKA" },
+  "director": "Фамилия И. О.",
+  "director_position": "Директор",
+  "logo": "logo.png"
+}

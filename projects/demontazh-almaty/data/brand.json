@@ -1,0 +1,8 @@
+{
+  "name": "Тестовый бланк GABON AI ПТО",
+  "colors": { "primary": "#8C1A1A", "section": "#F4DDDD", "total": "#FCE9C0" },
+  "letterhead_pdf": "blank.pdf",
+  "letterhead_pages": "first",
+  "margins_mm": { "top": 42 },
+  "defaults": { "valid_days": 14, "numbering": "continuous" }
+}
