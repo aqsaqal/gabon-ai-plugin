@@ -30,7 +30,7 @@ plugins/gabon-ai/
   rules/RULES.md                  общие правила (ничего не выдумывать, НДС, проверки)
   skills/kp/                      навык «Коммерческое предложение»
     SKILL.md                      инструкция для Claude
-    scripts/build_kp.py           сборка Excel + PDF
+    scripts/build_kp.py           сборка Excel, PDF и Word
     scripts/check_kp.py           независимая проверка
     scripts/kp_core.py            общий расчёт
     scripts/make_template.py      пустой Excel-шаблон КП для ручного заполнения
@@ -45,7 +45,7 @@ plugins/gabon-ai/
   skills/akty/                    навык «Акты»: Р-1, накопительная, справка, Word
   skills/proverka/                навык «Проверка»: сверка всех документов проекта
   agents/proverka.md              независимый проверяющий агент
-  tests/                          автотесты
+tests/                            автотесты (пользователям плагина не нужны)
 projects/test-fundament/          тест: ТЗ -> ВОР -> смета, КП, график, договор, акты; сравнение со сметой подрядчика
 projects/demontazh-almaty/        тест: демонтаж 5 000 м³ × 4 500 тг
 docs/ROADMAP.md                   следующие этапы
@@ -54,52 +54,17 @@ docs/ROADMAP.md                   следующие этапы
 ## Ручной запуск без Claude
 
 ```
-uv run plugins/gabon-ai/skills/kp/scripts/build_kp.py   skills/prices/                  навык «Прайс-лист»: шаблон, проверка, поиск, подстановка в КП
-  skills/brand/                   навык «Фирменный шаблон»: цвета, логотип, бланк, тексты
-  skills/vor/                     навык «ВОР»: объёмы из документов заказчика, переход в КП
-  skills/smeta/                   навык «Смета»: ресурсный расчёт, проверка смет подрядчиков
-  skills/grafik/                  навык «График»: диаграмма Ганта, критический путь
-  skills/akty/                    навык «Акты»: Р-1, накопительная, справка, Word
-  skills/proverka/                навык «Проверка»: сверка всех документов проекта
-  agents/proverka.md              независимый проверяющий агент
-  tests/                          автотесты
-projects/test-fundament/input/kp.json
-uv run plugins/gabon-ai/skills/kp/scripts/check_kp.py   skills/prices/                  навык «Прайс-лист»: шаблон, проверка, поиск, подстановка в КП
-  skills/brand/                   навык «Фирменный шаблон»: цвета, логотип, бланк, тексты
-  skills/vor/                     навык «ВОР»: объёмы из документов заказчика, переход в КП
-  skills/smeta/                   навык «Смета»: ресурсный расчёт, проверка смет подрядчиков
-  skills/grafik/                  навык «График»: диаграмма Ганта, критический путь
-  skills/akty/                    навык «Акты»: Р-1, накопительная, справка, Word
-  skills/proverka/                навык «Проверка»: сверка всех документов проекта
-  agents/proverka.md              независимый проверяющий агент
-  tests/                          автотесты
-projects/test-fundament/input/kp.json \
-    skills/prices/                  навык «Прайс-лист»: шаблон, проверка, поиск, подстановка в КП
-  skills/brand/                   навык «Фирменный шаблон»: цвета, логотип, бланк, тексты
-  skills/vor/                     навык «ВОР»: объёмы из документов заказчика, переход в КП
-  skills/smeta/                   навык «Смета»: ресурсный расчёт, проверка смет подрядчиков
-  skills/grafik/                  навык «График»: диаграмма Ганта, критический путь
-  skills/akty/                    навык «Акты»: Р-1, накопительная, справка, Word
-  skills/proverka/                навык «Проверка»: сверка всех документов проекта
-  agents/proverka.md              независимый проверяющий агент
-  tests/                          автотесты
-projects/test-fundament/output/KP_ТЕСТ-2026-001.xlsx   skills/prices/                  навык «Прайс-лист»: шаблон, проверка, поиск, подстановка в КП
-  skills/brand/                   навык «Фирменный шаблон»: цвета, логотип, бланк, тексты
-  skills/vor/                     навык «ВОР»: объёмы из документов заказчика, переход в КП
-  skills/smeta/                   навык «Смета»: ресурсный расчёт, проверка смет подрядчиков
-  skills/grafik/                  навык «График»: диаграмма Ганта, критический путь
-  skills/akty/                    навык «Акты»: Р-1, накопительная, справка, Word
-  skills/proverka/                навык «Проверка»: сверка всех документов проекта
-  agents/proverka.md              независимый проверяющий агент
-  tests/                          автотесты
-projects/test-fundament/output/KP_ТЕСТ-2026-001.pdf
+uv run plugins/gabon-ai/skills/kp/scripts/build_kp.py projects/test-fundament/input/kp.json
+uv run plugins/gabon-ai/skills/kp/scripts/check_kp.py projects/test-fundament/input/kp.json \
+  projects/test-fundament/output/KP_ТЕСТ-2026-001.xlsx \
+  projects/test-fundament/output/KP_ТЕСТ-2026-001.pdf \
+  projects/test-fundament/output/KP_ТЕСТ-2026-001.docx
 ```
 
 ## Тесты
 
 ```
-cd plugins/gabon-ai
-uv run --with pytest --with openpyxl --with reportlab --with pypdf --with pillow --with python-docx python -m pytest -q tests
+uv run --with pytest --with openpyxl==3.1.5 --with reportlab==5.1.0 --with pypdf==6.21.4 --with pillow==13.0.0 --with python-docx==1.2.0 python -m pytest -q tests
 ```
 
 ## Лицензия

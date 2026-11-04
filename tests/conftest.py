@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1] / "plugins" / "gabon-ai"
 sys.path.insert(0, str(ROOT / "skills" / "kp" / "scripts"))
 sys.path.insert(0, str(ROOT / "skills" / "prices" / "scripts"))
 sys.path.insert(0, str(ROOT / "skills" / "brand" / "scripts"))

@@ -57,11 +57,11 @@ class Evaluator:
         return self.cache[key]
 
     def eval(self, sheet, f):
-        env, k = {}, [0]
+        names, k = {}, [0]
 
         def stash(v):
             k[0] += 1
-            env[f"_v{k[0]}"] = v
+            names[f"_v{k[0]}"] = v
             return f"_v{k[0]}"
         f = f.replace("_xlfn.", "")
         f = re.sub(rf"{self.SH}{self.REF}:{self.REF}", lambda m: stash(
@@ -70,20 +70,20 @@ class Evaluator:
         f = re.sub(rf"(?<![\w.]){self.REF}(?![\w(])", lambda m: stash(self.value(sheet, f"{m[1]}{m[2]}")), f)
         f = f.replace("WORKDAY.INTL(", "WD(")
         tree = ast.parse(f, mode="eval")
-        return self._ev(tree.body, env)
+        return self._ev(tree.body, names)
 
-    def _ev(self, n, env):
+    def _ev(self, n, names):
         if isinstance(n, ast.Constant) and isinstance(n.value, (int, float, str)) \
                 and not isinstance(n.value, bool):
             return Decimal(str(n.value)) if not isinstance(n.value, str) else n.value
-        if isinstance(n, ast.Name) and n.id in env:
-            return env[n.id]
+        if isinstance(n, ast.Name) and n.id in names:
+            return names[n.id]
         if isinstance(n, ast.BinOp) and isinstance(n.op, (ast.Add, ast.Sub, ast.Mult, ast.Div)):
-            a, b = self._ev(n.left, env), self._ev(n.right, env)
+            a, b = self._ev(n.left, names), self._ev(n.right, names)
             return {ast.Add: a + b, ast.Sub: a - b, ast.Mult: a * b}.get(type(n.op)) \
                 if not isinstance(n.op, ast.Div) else a / b
         if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and not n.keywords:
-            args = [self._ev(x, env) for x in n.args]
+            args = [self._ev(x, names) for x in n.args]
             fn = n.func.id
             if fn == "MAX":
                 return max(args)

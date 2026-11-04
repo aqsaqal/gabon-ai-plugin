@@ -15,7 +15,7 @@ RATES = {"overhead_pct": 10, "profit_pct": 8, "vat_pct": 16, "vat_source": "т"}
 
 
 @pytest.fixture
-def env(tmp_path, make_prices):
+def workspace(tmp_path, make_prices):
     make_prices([
         ("ТР-1", "Рабочий", "чел.-ч", 3500, "работа", "src", date(2026, 10, 1), ""),
         ("МШ-1", "Насос", "маш.-ч", 38000, "механизм", "src", date(2026, 10, 1), ""),
@@ -45,8 +45,8 @@ def _run(tmp_path, data):
     return compute(load_smeta(p)), p
 
 
-def test_resource_breakdown(env):
-    tmp, base = env
+def test_resource_breakdown(workspace):
+    tmp, base = workspace
     (calc, _), _ = _run(tmp, base)
     bt = calc["by_type"]
     assert bt["материал"] == Decimal("3501750.00")   # 101,5 × 34 500
@@ -57,8 +57,8 @@ def test_resource_breakdown(env):
     assert calc["overhead"] == Decimal("428675.00")
 
 
-def test_overhead_and_profit_from_fot(env):
-    tmp, base = env
+def test_overhead_and_profit_from_fot(workspace):
+    tmp, base = workspace
     base["rates"].update(overhead_base="fot", overhead_pct=50, profit_base="fot", profit_pct=20)
     (calc, _), _ = _run(tmp, base)
     assert calc["overhead"] == Decimal("105000.00") and calc["profit"] == Decimal("42000.00")
@@ -75,8 +75,8 @@ def test_overhead_and_profit_from_fot(env):
     (lambda d: d["rates"].__setitem__("overhead_base", "фот"), "overhead_base"),
     (lambda d: d["sections"][0]["positions"][0].__setitem__("vor_id", "x"), "vor"),
 ])
-def test_validation(env, mut, text):
-    tmp, base = env
+def test_validation(workspace, mut, text):
+    tmp, base = workspace
     d = copy.deepcopy(base)
     mut(d)
     with pytest.raises(SmetaError) as e:
@@ -84,8 +84,8 @@ def test_validation(env, mut, text):
     assert any(text in x for x in e.value.errors), e.value.errors
 
 
-def test_price_kind_must_match_type(env):
-    tmp, base = env
+def test_price_kind_must_match_type(workspace):
+    tmp, base = workspace
     base["sections"][0]["positions"][1]["resources"][0] = {
         "type": "транспорт", "code": "ТР-1", "norm": 1, "source": "1"}
     base["sections"][0]["positions"][1]["unit"] = "рейс"
@@ -94,8 +94,8 @@ def test_price_kind_must_match_type(env):
     assert any("вид «работа»" in x for x in e.value.errors)
 
 
-def test_build_and_check(env):
-    tmp, base = env
+def test_build_and_check(workspace):
+    tmp, base = workspace
     _, p = _run(tmp, base)
     out = tmp / "out"
     r = subprocess.run([sys.executable, SM / "build_smeta.py", p, "--out", out],
@@ -120,8 +120,8 @@ def _contractor_xlsx(path, conc_amount=5170500, total=13_000_000):
     wb.save(path)
 
 
-def test_import_and_compare(env):
-    tmp, base = env
+def test_import_and_compare(workspace):
+    tmp, base = workspace
     base["sections"][0]["positions"].pop(1)
     _, p = _run(tmp, base)
     _contractor_xlsx(tmp / "c.xlsx")
@@ -147,9 +147,9 @@ def test_import_and_compare(env):
     assert "объём +10.0 %" in notes and "нет у нас" in notes
 
 
-def test_compare_all_in_total_matches_subtotal(env):
+def test_compare_all_in_total_matches_subtotal(workspace):
     from compare import load_ours
-    tmp, base = env
+    tmp, base = workspace
     _, p = _run(tmp, base)
     meta, rows = load_ours(p, "all_in")
     assert sum(r["amount"] for r in rows) == meta["subtotal"]

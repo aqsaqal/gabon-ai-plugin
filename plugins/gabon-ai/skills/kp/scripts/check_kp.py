@@ -31,7 +31,7 @@ _OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul,
         ast.Div: operator.truediv}
 
 
-def _safe_eval(expr: str, env: dict):
+def _safe_eval(expr: str, names: dict):
     """Вычисляет только арифметику над числами и ячейками. Никакого кода из файла."""
     try:
         tree = ast.parse(expr.strip(), mode="eval")
@@ -44,8 +44,8 @@ def _safe_eval(expr: str, env: dict):
         if isinstance(n, ast.Constant) and isinstance(n.value, (int, float)) \
                 and not isinstance(n.value, bool):
             return Decimal(str(n.value))
-        if isinstance(n, ast.Name) and n.id in env and n.id not in ("_round", "_min", "_max"):
-            return env[n.id]
+        if isinstance(n, ast.Name) and n.id in names and n.id not in ("_round", "_min", "_max"):
+            return names[n.id]
         if isinstance(n, ast.BinOp) and type(n.op) in _OPS:
             return _OPS[type(n.op)](ev(n.left), ev(n.right))
         if isinstance(n, ast.UnaryOp) and isinstance(n.op, (ast.USub, ast.UAdd)):
@@ -53,7 +53,7 @@ def _safe_eval(expr: str, env: dict):
             return -v if isinstance(n.op, ast.USub) else v
         if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == "_round" \
                 and len(n.args) == 2 and not n.keywords:
-            return env["_round"](ev(n.args[0]), ev(n.args[1]))
+            return names["_round"](ev(n.args[0]), ev(n.args[1]))
         if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) \
                 and n.func.id in ("_min", "_max") and n.args and not n.keywords:
             vals = [ev(a) for a in n.args]
@@ -135,8 +135,8 @@ class FormulaEvaluator:
 
         def _round(x, n):
             return x.quantize(Decimal(1).scaleb(-int(n)), rounding=ROUND_HALF_UP)
-        env = {"_round": _round, **calls}
-        return _safe_eval(f, env)
+        names = {"_round": _round, **calls}
+        return _safe_eval(f, names)
 
 
 def main() -> int:
