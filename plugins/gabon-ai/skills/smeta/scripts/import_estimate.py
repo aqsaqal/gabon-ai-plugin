@@ -114,7 +114,7 @@ def main() -> int:
                           "price": None if price is None else str(price),
                           "amount": None if amount is None else str(amount),
                           "code": str(cell(row, "code") or "").strip()})
-    out = {"source_file": str(Path(a.xlsx).resolve()), "sheet": ws.title,
+    out = {"source_file": Path(a.xlsx).name, "sheet": ws.title,
            "contractor": a.contractor, "prices_include_vat": a.prices_include_vat,
            "positions": positions, "totals": totals}
     Path(a.out).write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")

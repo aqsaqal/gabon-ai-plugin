@@ -1,5 +1,5 @@
 {
-  "source_file": "/Users/admin/dev/gabit/projects/test-fundament/input/smeta_podryadchika.xlsx",
+  "source_file": "smeta_podryadchika.xlsx",
   "sheet": "Смета",
   "contractor": "ТОО «Тестовый Подрядчик»",
   "prices_include_vat": false,

@@ -4,12 +4,14 @@
 
 ## Установка (в Claude Code)
 
+Нужна утилита [uv](https://docs.astral.sh/uv/getting-started/installation/): через неё запускаются скрипты плагина. При первом запуске нужен интернет, чтобы загрузить библиотеки Python.
+
 ```
-/plugin marketplace add /Users/admin/dev/gabit
+/plugin marketplace add aqsaqal/gabon-ai-plugin
 /plugin install gabon-ai@gabon-ai
 ```
 
-После установки перезапустите Claude Code. Обновление после изменений: `/plugin marketplace update gabon-ai`.
+После установки перезапустите Claude Code. Обновление до новой версии: `/plugin marketplace update gabon-ai`.
 
 ## Использование
 
@@ -17,7 +19,7 @@
 
 > Сделай КП на демонтаж перегородок для ТОО «Заказчик», объёмы в input/ВОР.xlsx
 
-Claude соберёт `kp.json`, создаст PDF и Excel в `output/` и проверит их.
+Claude соберёт `kp.json`, создаст PDF, Excel и Word в `output/` и проверит их.
 
 ## Структура
 

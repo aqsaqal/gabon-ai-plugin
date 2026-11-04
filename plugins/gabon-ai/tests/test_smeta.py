@@ -130,6 +130,7 @@ def test_import_and_compare(env):
     assert r.returncode == 0, r.stdout + r.stderr
     c = json.loads((tmp / "c.json").read_text(encoding="utf-8"))
     assert len(c["positions"]) == 2 and c["positions"][0]["section"] == "Бетонные работы"
+    assert c["source_file"] == "c.xlsx"                  # без пути с компьютера пользователя
     assert c["totals"] == {"subtotal": "5620000", "vat": "899200", "total": "13000000"}
     r = subprocess.run([sys.executable, SM / "compare.py", "--ours", p, "--contractor",
                         tmp / "c.json", "--out", tmp / "cmp"], capture_output=True, text=True)
