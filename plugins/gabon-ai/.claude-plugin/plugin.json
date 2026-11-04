@@ -1,7 +1,7 @@
 {
   "name": "gabon-ai",
-  "version": "0.9.4",
-  "description": "GABON AI: коммерческие предложения (PDF + Excel с формулами), сметы и документация ПТО для строительных компаний Казахстана",
+  "version": "0.9.5",
+  "description": "КП, ведомости объёмов, сметы, графики работ и акты выполненных работ для строительных компаний Казахстана: проверяемые расчёты, Excel с формулами, PDF и Word.",
   "author": {
     "name": "GABON AI"
   },
@@ -14,5 +14,8 @@
   ],
   "license": "MIT-0",
   "displayName": "GABON AI",
-  "repository": "https://github.com/aqsaqal/gabon-ai-plugin"
+  "repository": "https://github.com/aqsaqal/gabon-ai-plugin",
+  "homepage": "https://github.com/aqsaqal/gabon-ai-plugin",
+  "documentationUrl": "https://github.com/aqsaqal/gabon-ai-plugin/blob/main/plugins/gabon-ai/README.md",
+  "supportUrl": "https://github.com/aqsaqal/gabon-ai-plugin/issues"
 }

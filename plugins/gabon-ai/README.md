@@ -29,6 +29,7 @@ It makes commercial calculations, not official normative estimates with Kazakh r
 
 ## What it runs and accesses
 
+- **Where it works:** Claude Code. It runs Python scripts on your computer, and it is tested only in Claude Code.
 - **Requirement:** [uv](https://docs.astral.sh/uv/) must be installed. Claude runs the plugin's Python scripts with `uv run`.
 - **Downloads:** on first run, uv downloads the Python libraries named at the top of each script from PyPI: openpyxl, reportlab, pypdf, pillow and python-docx. It needs internet access for this.
 - **Files:** scripts read and write only the files in the project folder you point them at, plus a system font for PDFs.
