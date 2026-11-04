@@ -35,6 +35,8 @@ It makes commercial calculations, not official normative estimates with Kazakh r
 - **Files:** scripts read and write only the files in the project folder you point them at, plus a system font for PDFs.
 - **Data:** the plugin sends nothing to any server, and it has no telemetry, hooks or MCP servers. Claude itself reads your documents under your usual Claude Code terms.
 
+See the [privacy notice](PRIVACY.md).
+
 ## Install
 
 ```
