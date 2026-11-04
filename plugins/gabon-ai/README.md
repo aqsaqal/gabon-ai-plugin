@@ -44,7 +44,24 @@ See the [privacy notice](PRIVACY.md).
 /plugin install gabon-ai@gabon-ai
 ```
 
-Then describe the task in plain language, for example «Сделай КП на демонтаж перегородок, объёмы в input/ВОР.xlsx».
+Then open Claude Code in a folder with a `projects/<object>/input/` subfolder holding the client's documents, and describe the task in plain language.
+
+## Example prompts
+
+1. «Сделай КП на демонтаж здания в Алматы: 5 000 м³ по 4 500 тг/м³ без НДС, НДС 16 % сверху, заказчик пока не указан.»
+2. «Прочитай техзадание из input/TZ.pdf и составь ведомость объёмов работ на фундамент. То, чего нет в ТЗ, отметь как допущение или недостающие данные.»
+3. «Сравни смету подрядчика input/smeta_podryadchika.xlsx с нашей сметой input/smeta.json и покажи, где он завысил объёмы или цены.»
+4. «Проверь все документы проекта projects/sklad и скажи, можно ли отправлять КП заказчику.»
+
+A complete sample project is in the repository under `projects/test-fundament`: a client brief, a bill of quantities, an estimate, an offer, a schedule, a contract and two acts, all built from one another. Every figure in it is marked as test data.
+
+## Troubleshooting
+
+- **`uv: command not found`**: install uv from https://docs.astral.sh/uv/ and restart the terminal.
+- **The first run is slow or fails without internet**: uv is downloading the Python libraries. Connect once, and later runs work offline.
+- **A build stops with «ОШИБКИ В ИСХОДНЫХ ДАННЫХ»**: the message lists what is missing or wrong in the input file. Nothing is written until it is fixed.
+- **A check reports «РЕЗУЛЬТАТ: найдено ошибок»**: the generated files no longer match the input data, usually because they were edited by hand. Rebuild them from the input file.
+- **Cyrillic shows as boxes in a PDF**: no font with Cyrillic was found. Set `fonts` in `brand.json` to a TTF font that has it.
 
 ## License
 
